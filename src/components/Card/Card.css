@@ -4,7 +4,11 @@
   height: 100%;
 }
 
-.image {
+.card:hover {
+  cursor: pointer;
+}
+
+img {
   aspect-ratio: 1;
   object-fit: cover;
   max-width: 100%;
