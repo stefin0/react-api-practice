@@ -13,12 +13,13 @@ export default function GameControls({ setImages, setHideImages }) {
     }
   }, [countdown, setHideImages]);
 
-  const handleStartGame = async () => {
+  const startGame = async () => {
     try {
       const fetchedImages = await fetchRandomImages();
 
       const doubledImages = [...fetchedImages, ...fetchedImages];
-      setImages(doubledImages);
+      const shuffledImages = doubledImages.sort(() => Math.random() - 0.5);
+      setImages(shuffledImages);
       setCountdown(5);
     } catch (error) {
       console.error(`Failed to fetch images: ${error.message}`);
@@ -27,9 +28,7 @@ export default function GameControls({ setImages, setHideImages }) {
 
   return (
     <>
-      <button className="start-button" onClick={handleStartGame}>
-        Start Game
-      </button>
+      <button onClick={startGame}>Start Game</button>
       <p className="timer">
         {countdown !== null ? `Timer: ${countdown}` : `Timer`}
       </p>
